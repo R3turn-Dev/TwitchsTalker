@@ -1,0 +1,15 @@
+# Setting files
+*.json
+
+# Python caches
+__pycache__
+*.pyc
+
+# Runner files
+*.bat
+
+# Git files
+.venv
+
+# IDE Files
+.vscode
