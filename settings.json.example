@@ -1,0 +1,18 @@
+{
+    "channels": [
+        "eunhaklee",
+        "return0927"
+    ],
+    "credentials": {
+        "discord": {
+            "mode": "bot",
+            "bot": "bot token here",
+            "webhook": "webhook url here"
+        },
+        "twitch": {
+            "Client-ID": "",
+            "Client-Secret": "",
+            "Token": "if blank, the monitor will automatically generate one."
+        }
+    }
+}
