@@ -13,6 +13,9 @@ mon.sanic.load_routes(
     ]
 )
 print(" Sanic routes ", mon.sanic.router)
+
+
 mon.discord.load_extension("cogs.logger")
+mon.discord.load_extension("cogs.helper")
 
 mon.run()

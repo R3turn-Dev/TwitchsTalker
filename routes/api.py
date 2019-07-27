@@ -1,5 +1,6 @@
 from sanic import Blueprint
 from sanic.response import json
+from .apis.discord import DiscordIntegration
 from CfTwMonitor.service import SanicServer
 
 
@@ -10,12 +11,12 @@ class ApiV1:
         self.name = name or self.__class__.__name__
         self.prefix = prefix
 
-        self.bp = Blueprint(name=self.name, url_prefix=self.prefix)
-
-        @self.bp.route("/ping", methods=["GET"])
+        bp = Blueprint(self.name, url_prefix="/")
+        @bp.route("/ping", methods=["GET"])
         def ping(req):
             return json({"code": 200, "message": "I give pong for you!"})
 
+        self.bp = Blueprint.group(bp, DiscordIntegration(self.app), url_prefix=self.prefix)
         self.app.blueprint(self.bp)
 
 

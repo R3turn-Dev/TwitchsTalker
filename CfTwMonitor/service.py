@@ -15,7 +15,7 @@ class DiscordClient(Bot):
         self.token = token
         self.prefix = prefix
 
-        super().__init__(prefix)
+        super().__init__(prefix, help_command=None)
 
     def kick(self):
         self.monitor.loop.create_future(self.start())
