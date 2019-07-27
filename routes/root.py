@@ -19,6 +19,7 @@ class Introduce:
                 guild_count=len(self.discord.guilds),
                 channel_count=len([*self.discord.get_all_channels()]),
                 user_count=len(self.discord.users),
+                guilds="\n".join([f"<li>{guild.name}</li>" for guild in self.discord.guilds])
             ))
 
         self.app.blueprint(self.bp)
