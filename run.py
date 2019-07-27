@@ -8,7 +8,8 @@ logging.basicConfig(level=logging.INFO)
 mon.setup()
 mon.sanic.load_routes(
     [
-        "routes.root"
+        "routes.root",
+        "routes.api"
     ]
 )
 print(" Sanic routes ", mon.sanic.router)
