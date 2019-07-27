@@ -1,7 +1,10 @@
 import logging
 from CfTwMonitor import Monitor
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
-mon = Monitor()
+
+mon.setup()
+mon.discord.load_extension("cogs.logger")
+mon.run()
