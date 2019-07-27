@@ -6,6 +6,7 @@ from CfTwMonitor.service import SanicServer
 class Introduce:
     def __init__(self, app: SanicServer, name="welcome", prefix="/"):
         self.app = app
+        self.discord = self.app.monitor.discord
         self.name = name or self.__class__.__name__
         self.prefix = prefix
 
@@ -13,7 +14,12 @@ class Introduce:
 
         @self.bp.route("/", methods=["GET"])
         def root(req):
-            return html("""안녕하세요, 디스코드 봇 + Sanic 서버입니다!""")
+            return html(open("./templates/root/welcome.html").read().format(
+                monitor=self.app.monitor,
+                guild_count=len(self.discord.guilds),
+                channel_count=len([*self.discord.get_all_channels()]),
+                user_count=len(self.discord.users),
+            ))
 
         self.app.blueprint(self.bp)
 
