@@ -6,7 +6,7 @@ class DiscordHelp(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @command(name="도움", alias=["도움말"])
+    @command(aliases=["도움", "도움말"])
     async def help(self, ctx):
         await ctx.send(
             ctx.author.mention + """ 안녕하세요! 이 봇은 __**Discord + Web**__ 테스트 중입니다.
@@ -18,7 +18,7 @@ __**Web**__: http://bot.return0927.xyz/
 __**Admin**__: 이은학#9999 / invoice@return0927.xyz"""
         )
 
-    @command(alias=["웹", "홈피", "홈페이지"])
+    @command(aliases=["웹", "홈피", "홈페이지"])
     async def web(self, ctx):
         await ctx.send(
             ctx.author.mention + " http://bot.return0927.xyz/"
