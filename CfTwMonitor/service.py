@@ -5,6 +5,7 @@ from typing import List
 from discord.ext.commands import Bot
 from sanic import Sanic
 from traceback import format_exc
+from datetime import datetime
 
 
 class DiscordClient(Bot):
@@ -98,3 +99,13 @@ class SanicServer(Sanic):
                 lib.setup(self)
             except:
                 self.logger.error("Error on load route `{}` due to \n{}".format(bp, format_exc()))
+
+
+class TwitchDownloader:
+    def __init__(
+            self,
+            channels: List[str],
+            username: str="",
+
+            ):
+        self.channels = dict((k, None) for k in channels)
