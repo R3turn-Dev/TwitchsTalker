@@ -4,7 +4,25 @@ from .service import DiscordClient, SanicServer
 
 
 class Monitor:
+    """Integrated Object to run multiple sub-modules"""
     def __init__(self, token: str, prefix: str = ";", host: str="127.0.0.1", port: int=88, debug =False, loop=None):
+        """
+
+        Parameters
+        ----------
+        token
+            Token of Discord Bot Client
+        prefix
+            Command Prefix of Discord Bot Client
+        host
+            Hostname of Sanic Server
+        port
+            Port of Sanic Server
+        debug
+            Debug mode of Sanic Server
+        loop
+            Custom Event loop
+        """
         self.loop = loop or self._loop()
         self.debug = debug
 
