@@ -7,9 +7,12 @@ __pycache__
 
 # Runner files
 *.bat
+*.sh
+.venv
+venv
 
 # Git files
-.venv
+.git
 
 # IDE Files
 .vscode
