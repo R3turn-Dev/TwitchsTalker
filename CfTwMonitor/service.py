@@ -105,7 +105,61 @@ class TwitchDownloader:
     def __init__(
             self,
             channels: List[str],
-            username: str="",
-
             ):
         self.channels = dict((k, None) for k in channels)
+
+        self.extensions = []
+        self.listeners = []
+
+    @property
+    def logger(self):
+        return logging.getLogger(self.__class__.__module__ + "." + self.__class__.__name__)
+
+    def load_extension(self, name):
+        try:
+            lib = importlib.import_module(name)
+            if not hasattr(lib, 'setup'):
+                del lib
+                del sys.modules[name]
+
+                raise Exception("This route has not to setup.")
+
+            lib.setup(self)
+        except:
+            self.logger.error("Error on load route `{}` due to \n{}".format(name, format_exc()))
+
+
+class TwitchIRCClient:
+    def __init__(
+            self,
+            parent,
+            channels: List[str],
+            nick: str,
+            token: str,
+            host: str = "irc.twitch.tv",
+            port: int = 6667,
+            ):
+
+        self.monitor = parent
+        self.channels = dict((c, {}) for c in channels)
+        self.nick = nick
+        self.token = token
+        self.host = host
+        self.port = port
+
+    @property
+    def logger(self):
+        return self.monitor.logger
+
+    def load_extension(self, name):
+        try:
+            lib = importlib.import_module(name)
+            if not hasattr(lib, 'setup'):
+                del lib
+                del sys.modules[name]
+
+                raise Exception("This route has not to setup.")
+
+            lib.setup(self)
+        except:
+            self.logger.error("Error on load route `{}` due to \n{}".format(name, format_exc()))
