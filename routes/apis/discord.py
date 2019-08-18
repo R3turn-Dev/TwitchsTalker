@@ -31,14 +31,10 @@ class DiscordIntegration(Blueprint):
 
             for g in self.discord.guilds:
                 if g.id == id:
-                    guild = g
-                    break
-
-            if guild:
-                return json({
-                    "status": 200,
-                    "data": dumps(guild)
-                })
+                    return json({
+                        "status": 200,
+                        "data": dumps(guild)
+                    })
 
             return json({
                 "status": 404,
