@@ -27,13 +27,11 @@ class DiscordIntegration(Blueprint):
 
         @self.route("/guild/<id:int>", methods=["GET"])
         def get_guild(req, id: int):
-            guild = None
-
             for g in self.discord.guilds:
                 if g.id == id:
                     return json({
                         "status": 200,
-                        "data": dumps(guild)
+                        "data": dumps(g)
                     })
 
             return json({
