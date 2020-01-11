@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from asyncio import StreamReader, StreamWriter
 
+
 class Handler:
     @staticmethod
     def listener():
