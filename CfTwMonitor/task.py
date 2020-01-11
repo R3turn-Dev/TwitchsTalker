@@ -7,9 +7,9 @@ class Task:
     def __init__(
             self,
             func,
-            seconds,
-            minutes,
-            hours
+            seconds: float = .0,
+            minutes: float = .0,
+            hours: float = .0
             ):
         if not inspect.iscoroutinefunction(func):
             raise InvalidArgumentTypeError(func, "coroutine")
