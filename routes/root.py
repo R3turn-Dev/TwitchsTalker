@@ -14,7 +14,7 @@ class Introduce:
 
         @self.bp.route("/", methods=["GET"])
         def root(req):
-            return html(open("./templates/root/welcome.html").read().format(
+            return html(open("./templates/root/welcome.html", encoding="UTF-8").read().format(
                 monitor=self.app.monitor,
                 guild_count=len(self.discord.guilds),
                 channel_count=len([*self.discord.get_all_channels()]),
